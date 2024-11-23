@@ -1,0 +1,57 @@
+root/
+├── .github/                  # For GitHub Actions workflows (CI/CD pipelines)
+│   └── workflows/
+├── apps/                     # Contains all the microservices
+│   ├── auth-service/         # Authentication and Authorization service
+│   │   ├── src/
+│   │   │   ├── modules/      # Feature modules (e.g., Users, Roles)
+│   │   │   ├── common/       # Shared utilities, DTOs, guards
+│   │   │   ├── config/       # Configuration files (e.g., env)
+│   │   │   ├── main.ts       # Service entry point
+│   │   │   ├── app.module.ts # Root module
+│   │   └── tests/            # Unit and integration tests
+│   ├── product-service/      # Product management service
+│   │   ├── src/
+│   │   │   ├── modules/
+│   │   │   ├── common/
+│   │   │   ├── config/
+│   │   │   ├── main.ts
+│   │   │   ├── app.module.ts
+│   │   └── tests/
+│   └── order-service/        # Order management service
+│       ├── src/
+│       │   ├── modules/
+│       │   ├── common/
+│       │   ├── config/
+│       │   ├── main.ts
+│       │   ├── app.module.ts
+│       └── tests/
+├── libs/                     # Shared libraries across microservices
+│   ├── logger/               # Logging utilities
+│   ├── common/               # Shared utilities, constants, and interfaces
+│   ├── auth/                 # Authentication-related utilities
+│   └── database/             # Database connection setup and ORM entities
+├── api-gateway/              # API Gateway
+│   ├── src/
+│   │   ├── modules/
+│   │   ├── common/
+│   │   ├── config/
+│   │   ├── main.ts
+│   │   ├── app.module.ts
+│   └── tests/
+├── infra/                    # Infrastructure-related files
+│   ├── docker-compose.yml    # Docker Compose configuration
+│   ├── k8s/                  # Kubernetes manifests
+│   │   ├── auth-service/
+│   │   ├── product-service/
+│   │   ├── order-service/
+│   │   └── gateway/
+│   ├── monitoring/           # Monitoring setup (Prometheus, Grafana)
+│   └── nginx/                # NGINX configuration for API Gateway
+├── scripts/                  # Deployment and utility scripts
+├── docs/                     # Documentation
+│   ├── api-docs/             # OpenAPI or GraphQL schema
+│   └── architecture/         # Architecture diagrams and design docs
+├── package.json              # Project metadata and dependencies
+├── tsconfig.json             # TypeScript configuration
+└── README.md                 # Project overview and setup instructions

@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  # auth-service:
+  #   build:
+  #     context: ../apps/auth-service
+  #   ports:
+  #     - "3001:3000"
+  #   environment:
+  #     - NODE_ENV=development
+  #     - DATABASE_URL=postgres://user:password@postgres:5432/auth
+  #   depends_on:
+  #     - postgres
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: auth
+    ports:
+      - "5432:5432"
