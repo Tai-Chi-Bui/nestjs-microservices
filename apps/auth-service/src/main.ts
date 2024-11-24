@@ -4,6 +4,6 @@ import { AuthServiceModule } from './auth-service.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AuthServiceModule);
-  await app.listen(3011);
+  await app.listen(process.env.AUTH_PORT);
 }
 bootstrap();

@@ -1,30 +1,32 @@
 import { Module } from '@nestjs/common';
-import { AuthService } from './auth.service'; // Service for handling authentication logic
-import { AuthController } from './auth.controller'; // Controller for authentication endpoints
-import { JwtModule } from '@nestjs/jwt'; // Module for working with JSON Web Tokens (JWT)
-import { PassportModule } from '@nestjs/passport'; // Module for managing authentication strategies
-import { JwtStrategy } from './strategies/jwt.strategy'; // JWT-based authentication strategy
-import { LocalStrategy } from './strategies/local.strategy'; // Local (username-password) authentication strategy
-import { UsersModule } from '../user/user.module'; // UsersModule for user-related operations
+import { AuthService } from './auth.service';
+import { AuthController } from './auth.controller';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from './strategies/jwt.strategy';
+import { LocalStrategy } from './strategies/local.strategy';
+import { UsersModule } from '../user/user.module';
+import { UsersService } from '../user/user.service';
 
 @Module({
   imports: [
+    UsersModule, // Import UsersModule to access user-related functionality
     PassportModule, // Enables authentication strategies in the module
     JwtModule.registerAsync({
       // Dynamically configure the JWT module
       useFactory: async () => ({
-        secret: process.env.JWT_SECRET, // Use secret from environment variables for signing tokens
-        signOptions: { expiresIn: '1h' }, // Set token expiration to 1 hour
+        secret: process.env.JWT_SECRET,
+        signOptions: { expiresIn: '1h' },
       }),
     }),
-    UsersModule, // Import UsersModule to access user-related functionality
   ],
   controllers: [AuthController], // Define the controller for handling authentication routes
   providers: [
-    AuthService, // Provide AuthService for handling authentication logic
-    JwtStrategy, // Provide JwtStrategy for validating JWT tokens
-    LocalStrategy, // Provide LocalStrategy for username-password authentication
+    AuthService, // for handling authentication logic
+    UsersService, // for handling user logic
+    JwtStrategy, // for validating JWT tokens
+    LocalStrategy, // for username-password authentication
   ],
-  exports: [AuthService], // Export AuthService for use in other modules
+  exports: [AuthService], // for use in other modules
 })
 export class AuthModule {}

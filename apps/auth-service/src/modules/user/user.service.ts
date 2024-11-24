@@ -2,13 +2,20 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UsersService {
-  private readonly users = [
-    { id: 1, username: 'admin', password: 'admin' },
-    { id: 2, username: 'chris', password: 'secret' },
-    { id: 3, username: 'maria', password: 'guess' },
-  ];
+  private users = []; // Replace with actual database logic
 
-  async findOne(username: string) {
-    return this.users.find(user => user.username === username);
+  async findOne(username: string): Promise<{ username: string; password: string } | null> {
+    const foundUser = this.users.find(user => user.username === username);
+  
+    // Return an object containing only the username and password, or null if not found
+    return foundUser ? { username: foundUser.username, password: foundUser.password } : null;
+  }
+  
+
+  async create(user: { username: string; password: string }) {
+    const newUser = { id: this.users.length + 1, ...user };
+    this.users.push({...newUser});
+    delete newUser.password
+    return newUser;
   }
 }
