@@ -1,13 +1,14 @@
 ### Base URL (replace with your local or deployed URL)
-@baseUrl = http://localhost:3001
+@baseUrl = http://localhost:3011
+
 
 ### Authentication: Login
 POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-  "username": "testuser",
-  "password": "password123"
+  "username": "admin",
+  "password": "admin"
 }
 
 ###
