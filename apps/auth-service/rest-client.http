@@ -1,0 +1,53 @@
+### Base URL (replace with your local or deployed URL)
+@baseUrl = http://localhost:3001
+
+### Authentication: Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "password123"
+}
+
+###
+
+### Fetch All Users
+GET {{baseUrl}}/users
+Authorization: Bearer <your_jwt_token>
+
+###
+
+### Create a New User
+POST {{baseUrl}}/users
+Content-Type: application/json
+Authorization: Bearer <your_jwt_token>
+
+{
+  "username": "newuser",
+  "email": "newuser@example.com",
+  "password": "password123"
+}
+
+###
+
+### Get User by ID
+GET {{baseUrl}}/users/1
+Authorization: Bearer <your_jwt_token>
+
+###
+
+### Update User
+PATCH {{baseUrl}}/users/1
+Content-Type: application/json
+Authorization: Bearer <your_jwt_token>
+
+{
+  "email": "updatedemail@example.com"
+}
+
+###
+
+### Delete User
+DELETE {{baseUrl}}/users/1
+Authorization: Bearer <your_jwt_token>
